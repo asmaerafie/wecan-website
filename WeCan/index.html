@@ -8,19 +8,27 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="dropdownBackground">
+        <span class="arrow"></span>
+      </div> 
     <div class="big-container1">
         <p class="big-title">WeCan</p>
-        <nav class="nav">
+        <nav class="nav top">
             <div class="logo"><span style="font-size: 30px;">WeCan<sup style="font-size: 10px;">&copy;</sup></span>            
             <br><span style="font-size: 10px; position:absolute; right: 0;">By YouCan<sup style="font-size: 5px;">&copy;</sup></span>
             </div>
                 <div class="clear"></div> 
-            <ul> 
+            <ul class="cool">  
                 <li><a href="#"><span style="color:rgb(113, 49, 255)">About us</span></a></span></li>
                 <li><a href="#">Design & content</a></li>
                 <li><a href="#">Mobile Apps</a></li>
                 <li><a href="#">Communication</a></li>
-                <li><a href="#">Language<i class="down" style="color:rgb(41, 52, 80);"></i></a>                
+                <li style="position: relative; padding: 10px; z-index: 5;"><a href="#">Language<i class="down" style="color:rgb(41, 52, 80);"></i></a>
+                     <ul class="dropdown">
+                         <li>Français</li>
+                         <li>anglais</li>
+                         <li>arabe</li>
+                     </ul>           
                 </li>
             </ul>
             <div class="clear"></div>
@@ -218,4 +226,38 @@
         &copy; Copyright 2020 YouCan.shop Ecommerce Platform
     </div>
 </body>
+<script>
+    const triggers = document.querySelectorAll('.cool > li');
+    const background  = document.querySelector('.dropdownBackground');
+    const nav  = document.querySelector('.top');
+  
+    function handleEnter() {
+      this.classList.add('trigger-enter');
+      setTimeout(() => this.classList.contains('trigger-enter') && this.classList.add('trigger-enter-active'), 150);
+      background.classList.add('open');
+  
+      const dropdown = this.querySelector('.dropdown');
+      const dropdownCoords = dropdown.getBoundingClientRect();
+      const navCoords = nav.getBoundingClientRect();
+  
+      const coords = {
+        height: dropdownCoords.height,
+        width: dropdownCoords.width,
+        top: dropdownCoords.top - navCoords.top,
+        left: dropdownCoords.left - navCoords.left
+      };
+  
+      background.style.setProperty('width', `${coords.width}px`);
+      background.style.setProperty('height', `${coords.height}px`);
+      background.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`);
+    }
+  
+    function handleLeave() {
+      this.classList.remove('trigger-enter', 'trigger-enter-active');
+      background.classList.remove('open');
+    }
+  
+    triggers.forEach(trigger => trigger.addEventListener('mouseenter', handleEnter));
+    triggers.forEach(trigger => trigger.addEventListener('mouseleave', handleLeave));
+  </script>
 </html>
