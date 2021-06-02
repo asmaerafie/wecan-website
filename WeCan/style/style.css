@@ -159,7 +159,7 @@ nav a{
     line-height: 1.8em;
     position: relative;
     left:50px;
-    list-style-type:circle;
+    list-style:none;
 } 
 .big-container2 .d2,.d4{
     display:inline-block;
@@ -167,6 +167,24 @@ nav a{
     margin-left: 100px;
     margin-top: 150px;
     position:absolute; 
+}
+.big-container2 .d2 li::before{
+    content: url(../Imgs/cercle.png);
+    margin-right:10px;
+}
+.big-container2 .d2 img{ 
+     height:20px;
+     width:2px;
+     margin-left:5px;
+ }
+ .big-container2 .d3 li::before{
+    content: url(../Imgs/cercle.png);
+    margin-right:10px;
+}
+.big-container2 .d3 img{ 
+    height:20px;
+    width:2px;
+    margin-left:5px;
 }
 .big-container3 .d5{
     background: url(../Imgs/Groupe\ 1102.png);
@@ -335,6 +353,7 @@ button{
 }
 .socialmedia img{
     width: 20px;
+    padding-right: 2px;
 }
 .mobiles{
     position: absolute; 
@@ -343,6 +362,9 @@ button{
     margin-top:-150px;
     margin-left: 40%;
 } 
+.mobiles img{
+    width: 120px;
+}
 .mobileft{
     display: block;
     margin-top: -15%;
